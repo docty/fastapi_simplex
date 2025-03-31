@@ -18,15 +18,15 @@ class PredictionResult(BaseModel):
 @app.post('/predict', response_model=PredictionResult)
 def predict(input_data: InputData):
 
-    input_array = np.array([[input_data.feature]])
+    input_array = np.array([[input_data.feature]], dtype=np.float32)
 
     input_name = sess.get_inputs()[0].name
-    output_name = sess.get_outputs()[0].name
-    prediction = sess.run([output_name], {input_name: input_array.astype(np.float32)})[0]
+    #output_name = sess.get_outputs()[0].name
+    prediction = sess.run(None, {input_name: input_array})[0]
 
     
 
-    return {"prediction": prediction[0][0]}
+    return {"prediction": float(prediction[0][0])}
 
 @app.get('/')
 async def root(): 
