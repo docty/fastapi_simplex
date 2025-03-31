@@ -2,11 +2,12 @@ import uvicorn
 import numpy as np
 from fastapi import FastAPI
 from pydantic import BaseModel
-import joblib
+import onnxruntime as ort
 
 app = FastAPI()
 
-model = joblib.load('./model.pkl')
+sess = ort.InferenceSession('./model.onnx')
+
 class InputData(BaseModel):
     feature: float
 
@@ -19,7 +20,11 @@ def predict(input_data: InputData):
 
     input_array = np.array([[input_data.feature]])
 
-    prediction = model.predict(input_array)
+    input_name = sess.get_inputs()[0].name
+    output_name = sess.get_outputs()[0].name
+    prediction = sess.run([output_name], {input_name: input_array.astype(np.float32)})[0]
+
+    
 
     return {"prediction": prediction[0][0]}
 
