@@ -5,7 +5,7 @@ from pydantic import BaseModel
  
 
 app = FastAPI()
-
+classifier = pipeline("zero-shot-classification", model="facebook/bart-large-mnli")
  
 class InputData(BaseModel):
     feature: float
@@ -18,14 +18,14 @@ class PredictionResult(BaseModel):
 def predict(input_data: InputData):
 
     # input_array = np.array([[input_data.feature]])
-    classifier = pipeline("zero-shot-classification", model="facebook/bart-large-mnli")
+    
     # prediction = model.predict(input_array)
 
     return {"prediction": 32.5}
 
 @app.get('/')
 async def root(): 
-    return {"message": "Panin to the FastAPI model prediction service!"}
+    return {"message": "Kakra to the FastAPI model prediction service!"}
 
 
 if __name__ == "__main__":
