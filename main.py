@@ -1,5 +1,5 @@
 import uvicorn
- 
+from transformers import pipeline 
 from fastapi import FastAPI
 from pydantic import BaseModel
  
@@ -23,7 +23,7 @@ def predict(input_data: InputData):
 
 @app.get('/')
 async def root(): 
-    return {"message": "Welcome to the FastAPI model prediction service!"}
+    return {"message": "Thank you to the FastAPI model prediction service!"}
 
 
 if __name__ == "__main__":
