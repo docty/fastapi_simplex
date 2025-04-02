@@ -30,7 +30,7 @@ def predict(input_data: InputData):
 
 @app.get('/')
 async def root(): 
-    return {"message": "Thank you to the FastAPI model prediction service!"}
+    return {"message": "Everything you to the FastAPI model prediction service!"}
 
 
 if __name__ == "__main__":
