@@ -18,14 +18,14 @@ class PredictionResult(BaseModel):
 def predict(input_data: InputData):
 
     # input_array = np.array([[input_data.feature]])
-
+    classifier = pipeline("zero-shot-classification", model="facebook/bart-large-mnli")
     # prediction = model.predict(input_array)
 
     return {"prediction": 32.5}
 
 @app.get('/')
 async def root(): 
-    return {"message": "Henry to the FastAPI model prediction service!"}
+    return {"message": "Eugene to the FastAPI model prediction service!"}
 
 
 if __name__ == "__main__":
