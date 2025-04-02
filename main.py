@@ -20,13 +20,13 @@ class PredictionResult(BaseModel):
 @app.post('/predict', response_model=PredictionResult)
 def predict(input_data: InputData):
 
-    result = classifier(input_data.text, candidate_labels)
-    scores = result['scores']
-    labels = result['labels'][0]
-    max_score_index = scores.index(max(scores))
+    #result = classifier(input_data.text, candidate_labels)
+    #scores = result['scores']
+    #labels = result['labels'][0]
+    #max_score_index = scores.index(max(scores))
 
 
-    return {"prediction": labels}
+    return {"prediction": input_data}
 
 @app.get('/')
 async def root(): 
