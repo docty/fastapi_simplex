@@ -26,7 +26,7 @@ def predict(input_data: InputData):
     #max_score_index = scores.index(max(scores))
 
 
-    return {"prediction": input_data}
+    return {"prediction": 'input_data'}
 
 @app.get('/')
 async def root(): 
