@@ -11,7 +11,7 @@ class InputData(BaseModel):
     feature: float
 
 class PredictionResult(BaseModel):
-    prediction: str
+    prediction: float
 
 
 @app.post('/predict', response_model=PredictionResult)
@@ -21,11 +21,11 @@ def predict(input_data: InputData):
     classifier = pipeline("zero-shot-classification", model="facebook/bart-large-mnli")
     # prediction = model.predict(input_array)
 
-    return {"prediction": "Hello World!"}
+    return {"prediction": 32.5}
 
 @app.get('/')
 async def root(): 
-    return {"message": "Josephine to the FastAPI model prediction service!"}
+    return {"message": "Panin to the FastAPI model prediction service!"}
 
 
 if __name__ == "__main__":
